@@ -11,16 +11,12 @@
       th:object="${course}"
       method="post"
       style="text-align:center; margin-top:200px; font-size: 30px;">
-    <input type="hidden" name = "id" th:field="${course.id}">
+    <input type="hidden" name = "id" th:field="*{id}">
     <input type="text"  name="Course Name" th:field="${course.courseName}" placeholder="Course Name">
     <input type="text"  name="durationOfMonth" th:field="${course.durationMonth}" placeholder="Duration of month">
+    <input type="text" name="companyID" th:field="${course.company.id}" placeholder="companyID">
     <br><br>
 
-    <select th:field="${course.companyId}">
-        <option th:each="company:${companyList}"
-                th:value="${company.getId()}"
-                th:text="${company.getCompanyName()}"></option>
-    </select>
     <input type="submit" value="Add">
 
 </form>

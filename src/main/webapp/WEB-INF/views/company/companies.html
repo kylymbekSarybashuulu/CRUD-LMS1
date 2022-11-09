@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+
     <meta charset="UTF-8">
     <title>Companies</title>
     <style>table,
     td {
         border: 1px solid #333;
-        margin-top: 200px;
+        margin-top: 50px;
         margin-left: auto;
         margin-right: auto;
         font-size: 25px;
@@ -14,18 +16,28 @@
 
     thead,
     tfoot {
-        background-color: #333;
-        color: #fff;
+        background-color: #2041af;
+        color: #af204b;
     }
     </style>
     <style>
         table, th, td {
-            border: 1px solid black;
+            border: 1px solid red;
             padding: 3px;
+        }
+        .add{
+           width: 100%;
+            text-align: center;
+
         }
     </style>
 </head>
 <body>
+<br>
+<br>
+<button style="height: 50px; width: 150px; background-color: initial;" type="button" class="btn btn-outline-light" ><a th:href= "@{/index}">MAIN</a></button>
+<br>
+<br>
 <table class="table table-bordered ">
     <thead class="table-dark">
     <tr>
@@ -40,18 +52,22 @@
     <tr th:each="company : ${companies}">
         <td th:text="${company.id}"></td>
         <td th:text="${company.companyName}"></td>
-        <td th:text="${company.locatedCountry}"></td>
+        <td th:text="${company.locateCountry}"></td>
 
-        <td><a th:href="@{/companies/{id}/updateCompany(id=${company.id})}">
-            <button style="height: 40px; width: 80px; background-color:blue;">update</button>
+        <td>
+            <a th:href="@{/company/updateCompany/{id}(id=${company.getId()})}">
+            <button style="height: 40px; width: 80px; background-color:yellow;">update</button>
         </a>
         </td>
-        <td><form th:method="DELETE" th:action="@{/companies/{id}(id=${company.getId()})}">
+        </td>
+
+        <td><form th:method="DELETE" th:action="@{/company/deleteCompany/{id}(id=${company.id})}">
             <input type="submit" value="delete" style="height: 40px; width: 80px; background-color:red;"/></form></td>
-    </tr>
+    </tr >
+
     </tbody>
 </table>
-<a href="/company/addCompany">Add company</a>
+<a href="/company/addCompany"><input class="add" type="button" value="Add Company"></a>
 
 </body>
 </html>
